@@ -76,15 +76,22 @@ public class ListaAlunosActivity extends AppCompatActivity {
         abrirSite(aluno, itemSite);
         MenuItem itemSMS = menu.add("Enviar SMS");
         enviarSMS(aluno, itemSMS);
-        MenuItem itemLigar = menu.add("Ligar para aluno");
         MenuItem itemMapa = menu.add("Localização");
+        abrirMapa(aluno, itemMapa);
+        MenuItem itemLigar = menu.add("Ligar para aluno");
 
 
     }
 
-    private void enviarSMS(final Aluno aluno, MenuItem itemSMS){
+    private void abrirMapa(final Aluno aluno, MenuItem itemMapa) {
+        Intent intentMapa = new Intent(Intent.ACTION_VIEW);
+        intentMapa.setData(Uri.parse("geo:0,0?q=" + aluno.getEndereco()));
+        itemMapa.setIntent(intentMapa);
+    }
+
+    private void enviarSMS(final Aluno aluno, MenuItem itemSMS) {
         Intent intentSMS = new Intent(Intent.ACTION_VIEW);
-        intentSMS.setData(Uri.parse("sms:"+aluno.getTelefone()));
+        intentSMS.setData(Uri.parse("sms:" + aluno.getTelefone()));
         itemSMS.setIntent(intentSMS);
     }
 
@@ -105,7 +112,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     private void abrirSite(Aluno aluno, MenuItem itemSite) {
         Intent intentSite = new Intent(Intent.ACTION_VIEW);
         String site = aluno.getSite();
-        if(!site.startsWith("http://") || !site.startsWith("https://")) {
+        if (!site.startsWith("http://") || !site.startsWith("https://")) {
             site = "http://" + site;
         }
         intentSite.setData(Uri.parse(site));
