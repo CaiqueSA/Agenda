@@ -75,6 +75,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         MenuItem itemSite = menu.add("Visitar site");
         abrirSite(aluno, itemSite);
         MenuItem itemSMS = menu.add("Enviar SMS");
+        enviarSMS(aluno, itemSMS);
         MenuItem itemLigar = menu.add("Ligar para aluno");
         MenuItem itemMapa = menu.add("Localização");
 
