@@ -34,5 +34,5 @@ public class SMSReceiver extends BroadcastReceiver {
             MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.msg);
             mediaPlayer.start();
         }
-    }
+     }
 }
