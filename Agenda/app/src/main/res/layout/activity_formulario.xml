@@ -15,7 +15,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:backgroud="#00A8EC"
+                android:background="#00A8EC"
                 android:id="@+id/formulario_foto"
                 android:src="@drawable/person"/>
             <Button
