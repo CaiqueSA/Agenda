@@ -26,7 +26,8 @@ public class AlunoDAO extends SQLiteOpenHelper {
                 "endereco TEXT," +
                 "telefone TEXT," +
                 "site TEXT," +
-                "nota REAL);";
+                "nota REAL," +
+                "foto IMAGE);";
         db.execSQL(sql);
     }
 
