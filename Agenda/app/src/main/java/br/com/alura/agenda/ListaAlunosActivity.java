@@ -1,8 +1,11 @@
 package br.com.alura.agenda;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -25,6 +28,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
+
 
         listaAlunos = (ListView) findViewById(R.id.lista_alunos);
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,8 +83,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         MenuItem itemMapa = menu.add("Localização");
         abrirMapa(aluno, itemMapa);
         MenuItem itemLigar = menu.add("Ligar para aluno");
-
-
+        ligar(aluno, itemLigar);
     }
 
     private void abrirMapa(final Aluno aluno, MenuItem itemMapa) {
@@ -117,5 +120,17 @@ public class ListaAlunosActivity extends AppCompatActivity {
         }
         intentSite.setData(Uri.parse(site));
         itemSite.setIntent(intentSite);
+    }
+
+    private void ligar(Aluno aluno, MenuItem itemLigar) {
+        if (ActivityCompat.checkSelfPermission(ListaAlunosActivity.this, Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(ListaAlunosActivity.this,
+                    new String[]{Manifest.permission.CALL_PHONE}, 123);
+        } else {
+            Intent intentLigar = new Intent(Intent.ACTION_CALL);
+            intentLigar.setData(Uri.parse("tel:" + aluno.getTelefone()));
+            startActivity(intentLigar);
+        }
     }
 }
