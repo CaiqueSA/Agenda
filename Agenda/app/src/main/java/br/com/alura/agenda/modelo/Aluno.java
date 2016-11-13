@@ -1,5 +1,7 @@
 package br.com.alura.agenda.modelo;
 
+import android.media.Image;
+
 import java.io.Serializable;
 
 public class Aluno implements Serializable {
@@ -9,6 +11,7 @@ public class Aluno implements Serializable {
     private String telefone;
     private String site;
     private Double nota;
+    private Image foto;
 
     public Long getId() {
         return id;
@@ -56,6 +59,14 @@ public class Aluno implements Serializable {
 
     public void setNota(Double nota) {
         this.nota = nota;
+    }
+
+    public Image getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Image foto) {
+        this.foto = foto;
     }
 
     @Override
