@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import br.com.alura.agenda.modelo.Aluno;
+import br.com.alura.agenda.util.ImageUtil;
 
 public class FormularioHelper {
     private final EditText campoNome;
@@ -45,7 +46,7 @@ public class FormularioHelper {
         aluno.setSite(campoSite.getText().toString());
         aluno.setTelefone(campoTelefone.getText().toString());
         aluno.setNota(Double.valueOf(campoNota.getProgress()));
-        aluno.setFoto(convertInByte(new File((String) campoFoto.getTag())));
+        aluno.setFoto(ImageUtil.convertInByte((String) campoFoto.getTag()));
         return aluno;
     }
 
@@ -70,28 +71,10 @@ public class FormularioHelper {
 
     private void carregaImagem(byte[] foto) {
         if (foto != null) {
-            ByteArrayInputStream fotoStream = new ByteArrayInputStream(foto);
-            Bitmap imagemFoto = BitmapFactory.decodeStream(fotoStream);
-            campoFoto.setImageBitmap(imagemFoto);
+            campoFoto.setImageBitmap(ImageUtil.convertInBitmap(foto));
             campoFoto.setScaleType(ImageView.ScaleType.FIT_XY);
         }
     }
 
-    private byte[] convertInByte(File arquivoFoto) {
-        try {
-            FileInputStream is = new FileInputStream(arquivoFoto);
-            BufferedInputStream bis = new BufferedInputStream(is);
 
-            ByteArrayOutputStream bos = new ByteArrayOutputStream(500);
-            int current = 0;
-            while ((current = bis.read()) != -1) {
-                bos.write((byte) current);
-            }
-
-            return bos.toByteArray();
-        } catch (IOException e) {
-            Log.d("convertInByte", "Error: " + e.toString());
-        }
-        return null;
-    }
 }
