@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import br.com.alura.agenda.R;
@@ -64,6 +66,15 @@ public class AlunoAdapter extends BaseAdapter {
         campoFoto.setImageBitmap(ImageUtil.convertInBitmap(aluno.getFoto()));
         campoFoto.setScaleType(ImageView.ScaleType.FIT_XY);
 
+        TextView campoEndereco = (TextView) view.findViewById(R.id.item_endereco);
+        if (campoEndereco != null) {
+            campoEndereco.setText(aluno.getEndereco());
+        }
+
+        TextView campoSite = (TextView) view.findViewById(R.id.item_site);
+        if (campoSite != null) {
+            campoSite.setText(aluno.getSite());
+        }
         return view;
     }
 }
