@@ -63,6 +63,17 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_enviar_notas:
+                new EnviaAlunosTask(this).execute();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_lista_alunos, menu);
 
