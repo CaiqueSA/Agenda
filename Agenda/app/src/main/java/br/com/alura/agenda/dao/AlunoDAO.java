@@ -27,7 +27,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
                 "telefone TEXT," +
                 "site TEXT," +
                 "nota REAL," +
-                "foto IMAGE);";
+                "foto BLOB);";
         db.execSQL(sql);
     }
 
@@ -35,7 +35,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         switch (oldVersion){
             case 1:
-                String sql = "ALTER TABLE Alunos ADD COLUMN foto IMAGE";
+                String sql = "ALTER TABLE Alunos ADD COLUMN foto BLOB";
                 db.execSQL(sql);
         }
     }
