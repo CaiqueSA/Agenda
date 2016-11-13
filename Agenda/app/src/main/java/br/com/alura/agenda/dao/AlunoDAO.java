@@ -15,7 +15,7 @@ import br.com.alura.agenda.modelo.Aluno;
 public class AlunoDAO extends SQLiteOpenHelper {
 
     public AlunoDAO(Context context) {
-        super(context, "Agenda", null, 1);
+        super(context, "Agenda", null, 2);
     }
 
     @Override
@@ -32,9 +32,11 @@ public class AlunoDAO extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS Alunos";
-        db.execSQL(sql);
-        onCreate(db);
+        switch (oldVersion){
+            case 1:
+                String sql = "ALTER TABLE Alunos ADD COLUMN foto IMAGE";
+                db.execSQL(sql);
+        }
     }
 
     public void insere(Aluno aluno) {
