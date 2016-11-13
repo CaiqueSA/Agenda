@@ -58,11 +58,7 @@ public class FormularioActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CODIGO_CAMERA && resultCode == Activity.RESULT_OK) {
-            Bitmap bm = BitmapFactory.decodeFile(caminhoFoto);
-            bm = Bitmap.createScaledBitmap(bm, 100, 100, true);
-            ImageView foto = (ImageView) findViewById(R.id.formulario_foto);
-            foto.setImageBitmap(bm);
-            foto.setScaleType(ImageView.ScaleType.FIT_XY);
+            helper.carregarImagem(caminhoFoto);
         }
     }
 
@@ -85,6 +81,7 @@ public class FormularioActivity extends AppCompatActivity {
                     dao.altera(aluno);
                 } else {
                     dao.insere(aluno);
+                    new File(caminhoFoto).delete();
                 }
                 dao.close();
 

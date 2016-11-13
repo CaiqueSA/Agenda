@@ -72,7 +72,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
             aluno.setTelefone(c.getString(c.getColumnIndex("telefone")));
             aluno.setSite(c.getString(c.getColumnIndex("site")));
             aluno.setNota(c.getDouble(c.getColumnIndex("nota")));
-
+            aluno.setFoto(c.getBlob(c.getColumnIndex("foto")));
             alunos.add(aluno);
         }
         c.close();
@@ -94,6 +94,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
         dados.put("telefone", aluno.getTelefone());
         dados.put("site", aluno.getSite());
         dados.put("nota", aluno.getNota());
+        dados.put("foto", aluno.getFoto());
         return dados;
     }
 }

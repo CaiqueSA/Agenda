@@ -11,7 +11,7 @@ public class Aluno implements Serializable {
     private String telefone;
     private String site;
     private Double nota;
-    private Image foto;
+    private byte[] foto;
 
     public Long getId() {
         return id;
@@ -61,11 +61,11 @@ public class Aluno implements Serializable {
         this.nota = nota;
     }
 
-    public Image getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(Image foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 
