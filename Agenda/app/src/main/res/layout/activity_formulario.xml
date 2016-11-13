@@ -16,10 +16,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:backgroud="#00A8EC"
+                android:id="@+id/imageFoto"
                 android:src="@drawable/person"/>
             <Button
                 android:layout_width="56dp"
                 android:layout_height="56dp"
+                android:id="@+id/botaoFoto"
                 android:background="@drawable/fundo_camera"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
